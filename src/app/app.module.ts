@@ -8,6 +8,8 @@ import { RodapeComponent } from './rodape/rodape.component';
 import {HttpModule} from '@angular/http';
 import { RestauranteComponent } from './restaurante/restaurante.component';
 import { DiversaoComponent } from './diversao/diversao.component';
+import {RouterModule} from '@angular/router';
+import {ROUTES} from './app.routes';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,8 @@ import { DiversaoComponent } from './diversao/diversao.component';
   ],
   imports: [
     BrowserModule,
-    HttpModule
+    HttpModule,
+    RouterModule.forRoot(ROUTES)
   ],
   providers: [],
   bootstrap: [AppComponent]
