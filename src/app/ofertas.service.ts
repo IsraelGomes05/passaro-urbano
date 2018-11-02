@@ -12,20 +12,36 @@ export class OfertasService {
 
   public getOfertas(): Promise<Oferta[]> {
     // efetuar requisição
-    return this.http.get(`${URL_API}?destaque=true`)
+    return this.http.get(`${URL_API}/ofertas?destaque=true`)
       .toPromise()
       .then((resposta: any) => resposta.json());
   }
 
   public getOfertasPorCategorias(categoria: string): Promise<Oferta[]> {
-    return this.http.get(`${URL_API}?categoria=${categoria}`)
+    return this.http.get(`${URL_API}/ofertas?categoria=${categoria}`)
       .toPromise()
       .then((resposta: any) => resposta.json());
   }
 
   getOfertaPorId(param: any): Promise<Oferta> {
-    return this.http.get(`${URL_API}?id=${param}`)
+    return this.http.get(`${URL_API}/ofertas?id=${param}`)
       .toPromise()
       .then((resposta: any) => resposta.json()[0]);
+  }
+
+  public getComoUsarOfertaPorId(id: string): Promise<string> {
+    return this.http.get(`${URL_API}/como-usar?id=${id}`)
+      .toPromise()
+      .then((resposta: any) => {
+        return resposta.json()[0].descricao;
+      });
+  }
+
+  public getOndeFicaOfertaPorId(id: string): Promise<string> {
+    return this.http.get(`${URL_API}/onde-fica?id=${id}`)
+      .toPromise()
+      .then((resposta: any) => {
+        return resposta.json()[0].descricao;
+      });
   }
 }
