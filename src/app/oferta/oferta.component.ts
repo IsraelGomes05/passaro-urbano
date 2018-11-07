@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {OfertasService} from '../ofertas.service';
 import {Oferta} from '../shared/oferta.module';
@@ -9,7 +9,7 @@ import {Oferta} from '../shared/oferta.module';
   styleUrls: ['./oferta.component.css'],
   providers: [OfertasService]
 })
-export class OfertaComponent implements OnInit {
+export class OfertaComponent implements OnInit , OnDestroy {
 
   public oferta: Oferta;
 
@@ -21,8 +21,10 @@ export class OfertaComponent implements OnInit {
   ngOnInit() {
     this.ofertaService.getOfertaPorId(this.router.snapshot.params['id'])
       .then((oferta: Oferta) => {
-          this.oferta = oferta;
+        this.oferta = oferta;
       });
   }
 
+  ngOnDestroy(): void {
+  }
 }
