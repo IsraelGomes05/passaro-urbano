@@ -220,6 +220,20 @@
       "complemento": "",
       "formaPagamento": "",
       "id": 5
+    },
+    {
+      "endereco": "Rua ubirajaraa",
+      "numero": "111",
+      "complemento": "não sei",
+      "formaPagamento": "dinheiro",
+      "id": 6
+    },
+    {
+      "endereco": "ssss",
+      "numero": "s",
+      "complemento": "2",
+      "formaPagamento": "dinheiro",
+      "id": 7
     }
   ]
 }
