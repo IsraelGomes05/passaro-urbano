@@ -234,6 +234,24 @@
       "complemento": "2",
       "formaPagamento": "dinheiro",
       "id": 7
+    },
+    {
+      "endereco": "2121",
+      "numero": "2",
+      "complemento": "222",
+      "formaPagamento": "dinheiro",
+      "itens": [
+        {
+          "id": 2,
+          "img": {
+            "url": "/assets/ofertas/2/img1.jpg"
+          },
+          "titulo": "Cozinha Mexicana",
+          "valor": 32.9,
+          "quantidade": 2
+        }
+      ],
+      "id": 8
     }
   ]
 }

@@ -4,35 +4,37 @@
 
       <h5>Sua Compra</h5>
       <hr/>
+      <div *ngIf="carrinhoService.getItens().length; else carrinhoVazio">
+        <div *ngFor="let item of itensCarrinho" class="form-row"
+             style="background: #FAFAFA; padding: 20px; border-bottom: solid 1px #F0F0F0">
+          <div class="form-group col-sm-1">
+            <img [src]="item.img.url" class="img-fluid">
+          </div>
+          <div class="form-group col-sm-6">
+            {{ item.titulo }}
+            <br/>
+            {{ item.descricao_oferta }}
+          </div>
 
-      <div *ngFor="let item of itensCarrinho" class="form-row" style="background: #FAFAFA; padding: 20px; border-bottom: solid 1px #F0F0F0">
-        <div class="form-group col-sm-1">
-          <img [src]="item.img.url" class="img-fluid">
-        </div>
-        <div class="form-group col-sm-6">
-          {{ item.titulo }}
-          <br/>
-          {{ item.descricao_oferta }}
-        </div>
-
-        <div>
-          <div class="row">
-            <div class="col">
-              <button (click)="remover(item)" type="button" class="btn btn-link">-</button>
-              {{ item.quantidade }}
-              <button (click)="adicionar(item)" type="button" class="btn btn-link">+</button>
+          <div>
+            <div class="row">
+              <div class="col">
+                <button (click)="remover(item)" type="button" class="btn btn-link">-</button>
+                {{ item.quantidade }}
+                <button (click)="adicionar(item)" type="button" class="btn btn-link">+</button>
+              </div>
             </div>
+          </div>
+
+          <div class="form-group col-sm-3 d-flex justify-content-end">
+            {{ item.quantidade * item.valor | currency: 'BRL': true}}
           </div>
         </div>
 
-        <div class="form-group col-sm-3 d-flex justify-content-end">
-          {{ item.quantidade * item.valor | currency: 'BRL': true}}
-        </div>
-      </div>
-
-      <div class="form-row">
-        <div class="form-group col d-flex justify-content-end">
-          <h4>Total do pedido: {{ carrinhoService.totalCarrinhoCompras() | currency: 'BRL': true}}</h4>
+        <div class="form-row">
+          <div class="form-group col d-flex justify-content-end">
+            <h4>Total do pedido: {{ carrinhoService.totalCarrinhoCompras() | currency: 'BRL': true}}</h4>
+          </div>
         </div>
       </div>
       <br/>
@@ -50,7 +52,8 @@
             autocomplete="off"
             formControlName="endereco"
           >
-          <p class="text-danger" *ngIf="formulario.controls.endereco.dirty && formulario.controls.endereco.errors" >Valor inválido</p>
+          <p class="text-danger" *ngIf="formulario.controls.endereco.dirty && formulario.controls.endereco.errors">Valor
+                                                                                                                   inválido</p>
         </div>
 
         <div class="form-group col-md-2">
@@ -61,7 +64,7 @@
             autocomplete="off"
             formControlName="numero"
           >
-          <p class="text-danger" *ngIf="formulario.controls.numero.dirty && formulario.controls.numero.errors" >Valor inválido</p>
+          <p class="text-danger" *ngIf="formulario.controls.numero.dirty && formulario.controls.numero.errors">Valor
         </div>
 
         <div class="form-group col-md-4">
@@ -73,8 +76,14 @@
             formControlName="complemento"
           >
         </div>
-
       </div>
+      <ng-template #carrinhoVazio>
+        <div
+          class="form-row d-flex justify-content-center"
+          style="background: #FAFAFA; padding: 20px; border-bottom: solid 1px #F0F0F0">
+          <span class="text-info">Seu carrinho está vazio, não perca tempo aproveite as ofertas!</span>
+        </div>
+      </ng-template>
       <br/>
 
       <h5>Dados de pagamento</h5>
@@ -91,7 +100,9 @@
             <option value="dinheiro">Dinheiro</option>
             <option value="debito">Débito</option>
           </select>
-          <p class="text-danger" *ngIf="formulario.controls.formaPagamento.dirty && formulario.controls.formaPagamento.errors">Valor inválido</p>
+          <p class="text-danger"
+             *ngIf="formulario.controls.formaPagamento.dirty && formulario.controls.formaPagamento.errors">Valor
+                                                                                                           inválido</p>
         </div>
       </div>
 

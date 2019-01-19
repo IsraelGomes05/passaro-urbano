@@ -51,11 +51,14 @@ export class CarrinhoService {
 
     if (itemCarrinhoEncontrado) {
       itemCarrinhoEncontrado.quantidade -= 1;
+      if (itemCarrinhoEncontrado.quantidade === 0) {
+        this.items.splice(this.items.indexOf(itemCarrinhoEncontrado, 0), 1);
+      }
     }
+  }
 
-    if (itemCarrinhoEncontrado.quantidade === 0) {
-      this.items.splice(this.items.indexOf(itemCarrinhoEncontrado, 0), 1);
-    }
+  public limparCarrinho(): void {
+    this.items = [];
   }
 }
 

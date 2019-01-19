@@ -40,16 +40,23 @@ export class OrdemCompraComponent implements OnInit {
       return;
     }
 
+    if (this.carrinhoService.getItens().length === 0) {
+      alert('O carrinho está vazio!');
+      return;
+    }
+
     const pedido: Pedido = new Pedido (
       this.formulario.value.endereco,
       this.formulario.value.numero,
       this.formulario.value.complemento,
-      this.formulario.value.formaPagamento
+      this.formulario.value.formaPagamento,
+      this.carrinhoService.getItens()
     );
 
     this.ordemCompraService.efetivarCompra(pedido)
       .subscribe((res: number) => {
           this.idCompra = res;
+          this.carrinhoService.limparCarrinho();
         },
         (error) => {
           console.log(error);
